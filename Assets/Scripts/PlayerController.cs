@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody rb;
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] Transform groundPoint;
@@ -13,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] LayerMask groundLayer;
 
+    private Rigidbody rb;
+    private InputReader inputReader;
     private bool isGrounded;
     private bool moveBackwards;
     private Vector2 moveInput;
@@ -20,12 +21,22 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        inputReader = GetComponent<InputReader>();
+    }
+
+    private void Start()
+    {
+        inputReader.JumpEvent += Jump;
+    }
+
+    private void OnDisable()
+    {
+        inputReader.JumpEvent -= Jump;
     }
 
     private void Update()
     {
         Move();
-        Jump();
         UpdateAnimator();
     }
 
@@ -60,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (isGrounded)
         {
             rb.velocity += new Vector3(0f, jumpForce, 0f);
         }
@@ -68,8 +79,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        moveInput.x = Input.GetAxis("Horizontal");
-        moveInput.y = Input.GetAxis("Vertical");
+        moveInput = inputReader.MovementValue;
         moveInput.Normalize();
 
         rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, moveInput.y * moveSpeed);
