@@ -1,18 +1,48 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Slime : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator anim;
+    Health health;
+
+    private void Awake()
     {
-        
+        anim = GetComponent<Animator>();
+        health = GetComponent<Health>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        
+        health.OnDamage += Damage;
+    }
+
+    private void Damage(int healthAmount)
+    {
+        if(healthAmount > 0)
+        {
+            StartCoroutine("DamageDealt");
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        anim.SetTrigger("Death");
+        Destroy(gameObject, 3f);
+    }
+
+    private IEnumerator DamageDealt()
+    {
+        anim.SetBool("GetHit", true);
+        yield return new WaitForSeconds(2f);
+        anim.SetBool("GetHit", false);
+
     }
 }

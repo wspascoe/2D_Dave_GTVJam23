@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         inputReader.JumpEvent += Jump;
+        inputReader.AttackEvent += Attack;
     }
 
     private void OnDisable()
@@ -69,6 +71,11 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("movingBackwards", moveBackwards);
     }
 
+    private void Attack()
+    {
+        anim.SetTrigger("Stomp");
+    }
+
     private void Jump()
     {
         if (isGrounded)
@@ -96,4 +103,5 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
 }

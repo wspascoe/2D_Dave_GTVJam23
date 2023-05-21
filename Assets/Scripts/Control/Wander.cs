@@ -33,7 +33,6 @@ public class Wander : MonoBehaviour
 	{
 		transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, targetRotation, Time.deltaTime * directionChangeInterval);
 		var forward = transform.TransformDirection(Vector3.forward);
-		animator.SetBool("IsWalking", true);
 		controller.SimpleMove(forward * speed);
 	}
 
