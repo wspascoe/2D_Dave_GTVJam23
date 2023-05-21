@@ -10,6 +10,9 @@ https://assetstore.unity.com/packages/3d/environments/historic/polylised-medieva
 RPG Hero PBR HP Polyart
 https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/rpg-hero-pbr-hp-polyart-121480
 
+RPG Monster Duo PBR Polyart
+https://assetstore.unity.com/packages/3d/characters/creatures/rpg-monster-duo-pbr-polyart-157762
+
 Papered Adventurer
 Kenney Assets
 
