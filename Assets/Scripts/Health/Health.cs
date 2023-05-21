@@ -23,6 +23,5 @@ public class Health : MonoBehaviour
         health = Mathf.Max(health - damage, 0);
 
         OnDamage?.Invoke(health);
-        Debug.Log(gameObject + " " + health);
     }
 }
