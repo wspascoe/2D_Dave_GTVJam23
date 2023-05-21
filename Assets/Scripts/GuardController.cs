@@ -36,7 +36,15 @@ public class GuardController : MonoBehaviour
             controller.Move(moveDirection * moveSpeed * Time.deltaTime);
             anim.SetBool("IsWalking", true);
         }
-        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
+        if (moveDirection != Vector3.zero)
+        {
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
+
+        }
     }
 
     private void UpdateTimer()
