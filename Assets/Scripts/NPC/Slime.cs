@@ -20,7 +20,7 @@ public class Slime : MonoBehaviour
         health.OnDamage += Damage;
     }
 
-    private void Damage(int healthAmount)
+    private void Damage(float healthAmount)
     {
         if(healthAmount > 0)
         {

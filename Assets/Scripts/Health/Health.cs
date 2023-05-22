@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 15;
+    [SerializeField] private float maxHealth = 15;
 
-    public event Action<int> OnDamage;
+    public event Action<float> OnDamage;
 
-    private int currentHealth;
+    private float currentHealth;
 
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void DealDamage(int damage)
+    public void DealDamage(float damage)
     {
         if (currentHealth == 0) { return; }
 
@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
         OnDamage?.Invoke(currentHealth);
     }
 
-    public int GetHealth()
+    public float GetHealth()
     {
         currentHealth = maxHealth;
         return currentHealth;

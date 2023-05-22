@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class DialogManager : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject startPlayer;
+    [SerializeField] PlayerController player;
     [SerializeField] GameObject textBox;
     //Need this to be able to find player since they start off Disabled
     //Otherwise it will cause a null reference on Start
@@ -16,8 +15,6 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-        player.SetActive(false);
-        startPlayer.SetActive(true);
         textBox.SetActive(true);
 
         dialogue =  textBox.GetComponent<Dialogue>();
@@ -36,9 +33,7 @@ public class DialogManager : MonoBehaviour
 
     private void SetGameStart()
     {
-        player.SetActive(true);
-        startPlayer.SetActive(false);
+        player.MoveEnabled = true;
         textBox.SetActive(false);
-        healthUI.SetupHealth();
     }
 }

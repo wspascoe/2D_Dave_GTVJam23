@@ -9,21 +9,21 @@ public class HealthUI : MonoBehaviour
     [SerializeField] Image healthBar;
     [SerializeField] Health playerHealth;
 
-    int currentHealth;
-    int maxHealth;
+    float currentHealth;
+    float maxHealth;
 
-    public void SetupHealth()
+    public void Start()
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         playerHealth.OnDamage += UpdateHealth;
         currentHealth = playerHealth.GetHealth();
         maxHealth = currentHealth;
-        Debug.Log(currentHealth + "/" + maxHealth);
         healthBar.fillAmount = currentHealth / maxHealth;
     }
 
-    private void UpdateHealth(int amount)
+    private void UpdateHealth(float amount)
     {
-       
+        currentHealth = amount;
+        healthBar.fillAmount = currentHealth / maxHealth;
     }
 }

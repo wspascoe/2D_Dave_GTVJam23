@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] LayerMask groundLayer;
 
+    public bool MoveEnabled { get; set; } = false;
+
     private Rigidbody rb;
     private InputReader inputReader;
     private bool isGrounded;
@@ -37,9 +39,9 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {
-        Move();
-        UpdateAnimator();
+    {     
+            Move();
+            UpdateAnimator();
     }
 
     private void UpdateAnimator()
@@ -88,8 +90,10 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = inputReader.MovementValue;
         moveInput.Normalize();
-
-        rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, moveInput.y * moveSpeed);
+        if (MoveEnabled)
+        {
+            rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, moveInput.y * moveSpeed);
+        }
 
         anim.SetFloat("moveSpeed", rb.velocity.magnitude);
 

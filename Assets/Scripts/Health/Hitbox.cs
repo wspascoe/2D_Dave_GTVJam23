@@ -24,6 +24,7 @@ public class Hitbox : MonoBehaviour
 
         if (other.TryGetComponent<Health>(out Health health))
         {
+            
             health.DealDamage(damage);
         }
     }
