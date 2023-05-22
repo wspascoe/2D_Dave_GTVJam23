@@ -9,19 +9,25 @@ public class Health : MonoBehaviour
 
     public event Action<int> OnDamage;
 
-    private int health;
+    private int currentHealth;
 
     private void Start()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
     }
 
     public void DealDamage(int damage)
     {
-        if (health == 0) { return; }
+        if (currentHealth == 0) { return; }
 
-        health = Mathf.Max(health - damage, 0);
+        currentHealth = Mathf.Max(currentHealth - damage, 0);
 
-        OnDamage?.Invoke(health);
+        OnDamage?.Invoke(currentHealth);
+    }
+
+    public int GetHealth()
+    {
+        currentHealth = maxHealth;
+        return currentHealth;
     }
 }

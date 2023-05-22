@@ -8,6 +8,9 @@ public class DialogManager : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject startPlayer;
     [SerializeField] GameObject textBox;
+    //Need this to be able to find player since they start off Disabled
+    //Otherwise it will cause a null reference on Start
+    [SerializeField] HealthUI healthUI;
 
     Dialogue dialogue;
 
@@ -36,5 +39,6 @@ public class DialogManager : MonoBehaviour
         player.SetActive(true);
         startPlayer.SetActive(false);
         textBox.SetActive(false);
+        healthUI.SetupHealth();
     }
 }
