@@ -1574,7 +1574,7 @@ MonoBehaviour:
   - Now I spend my days stomping them out.
   - Press the C key when we are close to them and we will stomp them.
   - Watch out for the turtles. They hurt.
-  textSpeed: 0.5
+  textSpeed: 0.1
 --- !u!1 &680677064
 GameObject:
   m_ObjectHideFlags: 0
